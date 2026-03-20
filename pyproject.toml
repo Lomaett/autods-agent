@@ -1,0 +1,20 @@
+[project]
+name = "autods-agent"
+version = "0.1.0"
+description = "Autonomous Data Science Agent"
+requires-python = ">=3.11"
+
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "xgboost",
+    "lightgbm",
+    "optuna",
+    "mlflow",
+    "openai",
+    "langchain>=1.2.13",
+    "setuptools>=82.0.1",
+]
