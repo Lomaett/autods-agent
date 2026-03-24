@@ -39,3 +39,6 @@ models/*
 !models/.gitkeep
 reports/*
 !reports/.gitkeep
+
+# OS files
+.DS_Store
