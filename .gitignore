@@ -28,5 +28,14 @@ venv/
 # pytest cache
 .pytest_cache/
 
-# data files
-data/
+# model files
+*.pkl
+*.joblib
+
+# Ignore all files except .gitkeep in data, models, and reports
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+reports/*
+!reports/.gitkeep

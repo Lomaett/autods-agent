@@ -1,0 +1,41 @@
+# AutoDS Agent – Dependencies
+
+# Core data science
+pandas>=2.1.0
+numpy>=1.26.0
+scikit-learn>=1.4.0
+scipy>=1.12.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.15.0
+
+# File format support
+openpyxl>=3.1.0        # xlsx read/write
+pyarrow>=15.0.0        # parquet support
+fastparquet>=2024.2.0  # alternative parquet engine
+
+# API layer
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9   # file uploads
+
+# Anthropic SDK (InsightAgent)
+anthropic>=0.25.0
+
+# OpenAI SDK (InsightAgent)
+openai>=2.14.0
+
+# LLM utilities
+litellm>=0.1.0
+
+# Utilities
+pydantic>=2.6.0
+python-dotenv>=1.0.0
+tqdm>=4.66.0
+joblib>=1.3.2
+
+# Notebook support
+jupyter>=1.0.0
+ipykernel>=6.29.0
