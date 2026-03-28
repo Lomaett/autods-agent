@@ -185,7 +185,7 @@ async def eda(
     tmp_path = _save_upload(file)
     try:
         pipeline = EDAPipeline(reports_dir=str(REPORTS_DIR))
-        brief, report = pipeline.run(
+        result, brief, report = pipeline.run(
             str(tmp_path),
             target_hint=target_col or None,
             task_type_hint=task_type or None,
