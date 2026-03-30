@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import logging
 import json
+import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Optional
@@ -17,6 +18,19 @@ from agents.insight_agent import InsightAgent
 from agents.ml_agent import MLAgent
 
 logger = logging.getLogger(__name__)
+
+
+def _sanitize_for_json(value):
+    """Recursively convert non-JSON-safe floats (NaN/inf) to None."""
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, dict):
+        return {k: _sanitize_for_json(v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [_sanitize_for_json(v) for v in value]
+    if isinstance(value, tuple):
+        return tuple(_sanitize_for_json(v) for v in value)
+    return value
 
 
 @dataclass
@@ -127,7 +141,7 @@ class TrainingPipeline:
             "next_steps": recommendations[:3],
         }
         with open(report_path, "w", encoding="utf-8") as f:
-            json.dump(
+            payload = _sanitize_for_json(
                 {
                     "brief": brief,
                     "ml_result": {
@@ -137,11 +151,9 @@ class TrainingPipeline:
                         "feature_names": ml_result["feature_names"],
                     },
                     "report": report,
-                },
-                f,
-                indent=2,
-                default=str,
+                }
             )
+            json.dump(payload, f, indent=2, default=str, allow_nan=False)
 
         logger.info("Best model   : %s", ml_result["best_model_name"])
         logger.info("Best metrics : %s", ml_result["metrics"])

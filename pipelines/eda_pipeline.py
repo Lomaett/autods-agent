@@ -45,8 +45,8 @@ class EDAPipeline:
             plots += viz.plot_target_distribution(clean_df, target)
 
         profile_path = self.reports_dir / "eda_profile.json"
-        with open(profile_path, "w") as f:
-            json.dump(profile, f, default=str, indent=2)
+        with open(profile_path, "w", encoding="utf-8") as f:
+            json.dump(profile, f, default=str, indent=2, allow_nan=False)
 
         brief = {
             "task_type": task_type_hint or "auto",
@@ -65,5 +65,5 @@ class EDAPipeline:
             "profile_path": str(profile_path),
         }
         with open(report["html_path"], "w", encoding="utf-8") as f:
-            json.dump({"brief": brief, "report": report}, f, indent=2, default=str)
-        return result, brief, report
+            json.dump({"brief": brief, "report": report}, f, indent=2, default=str, allow_nan=False)
+        return brief, report

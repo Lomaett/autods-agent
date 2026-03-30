@@ -90,3 +90,16 @@ curl -X POST http://localhost:8080/predict \
 - `target_col` is required for `/eda` and `/analyse`.
 - Models are persisted in `models/` as `.pkl`.
 - EDA artifacts are stored in `reports/`.
+
+## Frontend UI
+
+A ready-to-run Next.js UI is available in `frontend/`.
+
+```bash
+cd frontend
+cp .env.example .env.local
+npm install
+npm run dev
+```
+
+Frontend runs on `http://localhost:3000` and expects the backend on `http://127.0.0.1:8080`.
